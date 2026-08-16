@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>WebCheat</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+
+  <header class="bar">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M7 6V4M12 6V4M17 6V4M7 20v-2M12 20v-2M17 20v-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M9 12h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+      <span>WebCheat</span>
+    </div>
+
+    <div class="target">
+      <select id="tabSel" title="Hedef sekme"></select>
+      <select id="frameSel" title="Hedef frame (oyun genelde iframe icinde)"></select>
+      <button id="refreshBtn" class="ghost" title="Sekmeleri tara">Yenile</button>
+      <button id="reloadBtn" class="ghost" title="Hook'lar oyundan once takilsin diye sekmeyi yeniler">Sekmeyi Yenile</button>
+    </div>
+
+    <div class="status">
+      <span id="dot" class="dot"></span>
+      <span id="statusText">bagli degil</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- ---------------- Sol: tarama ---------------- -->
+    <section class="col scan">
+      <h2>Tarama</h2>
+
+      <div class="row">
+        <label for="regionSel">Bellek</label>
+        <select id="regionSel"></select>
+      </div>
+
+      <div class="row two">
+        <div>
+          <label for="typeSel">Deger tipi</label>
+          <select id="typeSel">
+            <option value="all">Hepsi (tum tipler)</option>
+            <option value="i32" selected>4 Byte (i32)</option>
+            <option value="f32">Float (f32)</option>
+            <option value="f64">Double (f64)</option>
+            <option value="i16">2 Byte (i16)</option>
+            <option value="i8">1 Byte (i8)</option>
+            <option value="u8">1 Byte isaretsiz (u8)</option>
+            <option value="u16">2 Byte isaretsiz (u16)</option>
+            <option value="u32">4 Byte isaretsiz (u32)</option>
+            <option value="i64">8 Byte (i64)</option>
+            <option value="u64">8 Byte isaretsiz (u64)</option>
+          </select>
+        </div>
+        <div>
+          <label for="cmpSel">Tarama tipi</label>
+          <select id="cmpSel"></select>
+        </div>
+      </div>
+
+      <div class="row two">
+        <div>
+          <label for="valInput">Deger</label>
+          <input id="valInput" type="text" placeholder="orn. 100" autocomplete="off">
+        </div>
+        <div id="val2Wrap" class="hidden">
+          <label for="val2Input">ve</label>
+          <input id="val2Input" type="text" placeholder="ust sinir" autocomplete="off">
+        </div>
+      </div>
+
+      <label class="check">
+        <input id="alignedChk" type="checkbox" checked>
+        <span>Hizali tarama <em>(hizli — kapatirsan cok yavas ama daha kapsamli)</em></span>
+      </label>
+
+      <div class="btns">
+        <button id="firstBtn" class="primary">Ilk Tarama</button>
+        <button id="nextBtn" disabled>Sonraki Tarama</button>
+        <button id="newBtn" class="ghost">Yeni Tarama</button>
+        <button id="cancelBtn" class="ghost hidden">Iptal</button>
+      </div>
+
+      <div class="progress"><div id="progBar"></div></div>
+      <div class="found"><span id="foundText">Sonuc yok</span></div>
+
+      <div class="results">
+        <table>
+          <thead><tr><th>Adres</th><th class="w-typ">Tip</th><th>Deger</th><th>Onceki</th></tr></thead>
+          <tbody id="resBody"></tbody>
+        </table>
+        <div id="resHint" class="hint">Degeri oyunda gordugun gibi gir, <b>Ilk Tarama</b>'ya bas.
+          Sonra oyunda degeri degistir, <b>Sonraki Tarama</b> ile daralt. Satira cift tikla &rarr; listeye ekle.</div>
+      </div>
+    </section>
+
+    <!-- ---------------- Sag: adres listesi + zaman ---------------- -->
+    <section class="col list">
+      <h2>Adres Listesi</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th class="w-frz">Dondur</th><th>Aciklama</th><th>Adres</th><th class="w-typ">Tip</th><th>Deger</th><th class="w-act"></th></tr>
+          </thead>
+          <tbody id="listBody"></tbody>
+        </table>
+      </div>
+      <div class="btns">
+        <button id="addManualBtn" class="ghost">Elle Adres Ekle</button>
+        <button id="clearListBtn" class="ghost">Listeyi Temizle</button>
+      </div>
+
+      <h2 class="mt">Zaman Kontrolu</h2>
+      <div class="speed">
+        <div class="presets" id="presets"></div>
+        <div class="row">
+          <input id="speedRange" type="range" min="0" max="800" value="100" step="5">
+          <output id="speedOut">1.00x</output>
+        </div>
+        <div class="btns">
+          <button id="pauseBtn" class="ghost">Duraklat</button>
+          <button id="stepBtn" class="ghost">Kare Ilerlet</button>
+        </div>
+        <div id="diag" class="diag">teshis bekleniyor…</div>
+        <p class="hint">Sanal saat <code>performance.now</code>, <code>Date.now</code>,
+          <code>requestAnimationFrame</code> ve zamanlayicilari olcekler. Oyun delta-time
+          kullaniyorsa simulasyon hizlanir; sabit adimli dongulerde etki daha az olur.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="panel.js"></script>
+</body>
+</html>

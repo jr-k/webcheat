@@ -1,0 +1,23 @@
+{
+  "name": "webcheat",
+  "version": "0.1.0",
+  "description": "Cheat Engine style memory scanner and time control for browser games, as a Chrome extension.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node test/engine.test.mjs"
+  },
+  "keywords": [
+    "cheat-engine",
+    "memory-scanner",
+    "webassembly",
+    "wasm",
+    "chrome-extension",
+    "game-hacking",
+    "reverse-engineering",
+    "browser-games",
+    "speedhack",
+    "game-development"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "WebCheat",
+  "version": "0.1.0",
+  "description": "Tarayici oyunlari icin bellek tarayici ve zaman kontrolu. Sekmeyi sec, degeri bul, degistir.",
+
+  "permissions": ["tabs", "webNavigation", "storage"],
+  "host_permissions": ["<all_urls>"],
+
+  "background": {
+    "service_worker": "src/bg/service-worker.js"
+  },
+
+  "action": {
+    "default_title": "WebCheat"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/agent/agent.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "match_origin_as_fallback": true,
+      "world": "MAIN"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/bridge/bridge.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "match_origin_as_fallback": true,
+      "world": "ISOLATED"
+    }
+  ]
+}
