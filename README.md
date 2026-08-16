@@ -14,6 +14,12 @@ and speed up or slow down time. No local server, no debug flags, no attaching a 
 
 [Install](#install) · [Quick start](#quick-start) · [How it works](#how-it-works) · [Türkçe](README.tr.md)
 
+<br>
+
+<img src="docs/panel.png" alt="WebCheat panel: tab and frame picker, scan controls, results table, address list with freeze, and time control with live diagnostics" width="900">
+
+<sub>Pick a tab, scan, narrow, edit, freeze — and drive the clock. The diagnostics box tells you what the target frame is actually doing.</sub>
+
 </div>
 
 ---

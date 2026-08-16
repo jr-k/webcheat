@@ -14,6 +14,12 @@ zamanı hızlandır ya da yavaşlat. Local sunucu yok, debug bayrağı yok, debu
 
 [Kurulum](#kurulum) · [Hızlı başlangıç](#hızlı-başlangıç) · [Nasıl çalışıyor](#nasıl-çalışıyor) · [English](README.md)
 
+<br>
+
+<img src="docs/panel.png" alt="WebCheat paneli: sekme ve frame seçici, tarama kontrolleri, sonuç tablosu, dondurmalı adres listesi ve canlı teşhisli zaman kontrolü" width="900">
+
+<sub>Sekmeyi seç, tara, daralt, değiştir, dondur — ve saati sür. Teşhis kutusu hedef frame'in gerçekte ne yaptığını söyler.</sub>
+
 </div>
 
 ---
